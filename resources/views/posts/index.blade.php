@@ -34,7 +34,7 @@
                               @forelse ($posts as $post)
                                 <tr>
                                     <td class="text-center">
-                                        <img src="{{ asset('/storage/posts/'.$post->image) }}" class="rounded" style="width: 150px">
+                                        <img src="{{ asset('storage/posts/'.$post->image) }}" class="rounded" style="width: 150px">
                                     </td>
                                     <td>{{ $post->title }}</td>
                                     <td>{!! $post->content !!}</td>
@@ -66,18 +66,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    @if(session()->has('success'))
     <script>
-        //message with toastr
-        @if(session()->has('success'))
-        
-            toastr.success('{{ session('success') }}', 'BERHASIL!'); 
+        toastr.success('{{ session("succes") }}', 'BERHASIL!'); 
+        </script>
+    @elseif(session()->has('error'))
+        <script>
+            toastr.error('{{ session("error") }}', 'GAGAL!'); 
+        </script>
+    @endif
 
-        @elseif(session()->has('error'))
-
-            toastr.error('{{ session('error') }}', 'GAGAL!'); 
-            
-        @endif
-    </script>
 
 </body>
 </html>
